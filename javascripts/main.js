@@ -3,7 +3,7 @@ const apiKeys = require('./apiKeys');
 
 const initializer = () => {
   apiKeys.setKeys();
-  events.keyPress();
+  events.searchWeather();
 };
 
 initializer();
