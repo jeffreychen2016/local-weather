@@ -39,7 +39,6 @@
     "no-redeclare": "error",
     "no-tabs": "error",
     "no-trailing-spaces": "error",
-    "no-unreachable": "error",
     "no-undef": "error",
     "no-unused-vars": [
       "error",
