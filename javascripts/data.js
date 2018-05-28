@@ -1,25 +1,56 @@
+const dom = require('./dom');
+
 let apiKey = '';
+let zipcode = '';
 
 const setKey = (key) => {
   apiKey = key;
 };
 
-const searchDB = () => {
-  return new Promise((resolve,reject) => {
-    $.ajax(`http://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=imperial`)
-      .done((data) => {
-        resolve(data);
-      })
-      .fail((err) => {
-        reject(err);
-      });
-  });
+const setZipcode = () => {
+  zipcode = $('#input-zipcode').val();
 };
 
-const getResults = () => {
-  searchDB()
+const searchDB = (days) => {
+  setZipcode();
+  if (days === 1) {
+    return new Promise((resolve,reject) => {
+      $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
+        .done((data) => {
+          resolve(data);
+        })
+        .fail((err) => {
+          reject(err);
+        });
+    });
+  } else if (days === 5) {
+    return new Promise((resolve,reject) => {
+      $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
+        .done((data) => {
+          resolve(data);
+        })
+        .fail((err) => {
+          reject(err);
+        });
+    });
+  } else if (days === 3) {
+    return new Promise((resolve,reject) => {
+      $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
+        .done((data) => {
+          resolve(data);
+        })
+        .fail((err) => {
+          reject(err);
+        });
+    });
+  };
+};
+
+const getResults = (days) => {
+  searchDB(days)
     .then((data) => {
       console.log(data);
+      dom.printWidgets(data,days);
     })
     .catch((err) => {
       console.log(err);
