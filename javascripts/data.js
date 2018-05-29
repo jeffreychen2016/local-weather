@@ -36,8 +36,8 @@ const getResults = (days) => {
   if (zipcode) {
     searchDB(days,zipcode)
       .then((data) => {
-        dom.printWidgets(data,days);
         zipcodeValidation.removeInvalidZipError();
+        dom.printWidgets(data,days);
       })
       .catch((err) => {
         console.log(err);
