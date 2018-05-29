@@ -10,9 +10,9 @@ const validateZipcode = () => {
 const displayInvalidZipError = () => {
   if (!validateZipcode()) {
     let errorString = '';
-    errorString += '<div class="alert alert-danger" role="alert">Please enter a valid US zip code (use a hyphen if 9 digits).</div>';
+    errorString += '<div class="alert alert-danger margin-top" role="alert">Please enter a valid US zip code (use a hyphen if 9 digits).</div>';
     $('.alert').remove();
-    $('#zipcode-input-section').append(errorString);
+    $(errorString).appendTo('#zipcode-input-section').hide().fadeIn(600);
   };
 };
 
