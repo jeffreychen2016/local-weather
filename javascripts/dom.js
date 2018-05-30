@@ -1,3 +1,6 @@
+/* eslint no-undef: 0 */
+const moment = require('../lib/node_modules/moment');
+
 const printWidgets = (weatherData,days) => {
   let strang = '';
 
@@ -5,16 +8,16 @@ const printWidgets = (weatherData,days) => {
     // remove all widgets each time re-submit the zipcode
     // then re-print new widgets
     $('.weahter-widgets-row').remove();
-
     strang += `<div class="row margin-top weather-widgets-current-day-row weahter-widgets-row">`;
     strang += `<div class="col-sm-6 col-md-4 col-md-offset-4 weathercard-current-day weather-widgets">`;
     strang += `  <div class="thumbnail">`;
     strang += `    <img src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="...">`;
     strang += `    <div class="caption">`;
+    strang += `      <h3>${moment().format('MMMM DD, YYYY')}</h3>`;
     strang += `      <p>Temperature:${weatherData.main.temp}</p>`;
     strang += `      <p>Conditions:${weatherData.weather[0].description}</p>`;
     strang += `      <p>Air pressure:${weatherData.wind.speed}</p>`;
-    strang += `      <p>Wind speed${weatherData.main.pressure}</p>`;
+    strang += `      <p>Wind speed:${weatherData.main.pressure}</p>`;
     strang += `      <p><a href="#" class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a href="#" class="btn btn-default" role="button" id="btn-next-5-days">Next 5 Days</a></p>`;
     strang += `    </div>`;
     strang += `  </div>`;
@@ -32,6 +35,7 @@ const printWidgets = (weatherData,days) => {
         strang += `  <div class="thumbnail">`;
         strang += `    <img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" alt="...">`;
         strang += `    <div class="caption">`;
+        strang += `      <h3>${moment(weather.dt_txt).format('MMMM DD, YYYY')}</h3>`;
         strang += `      <p>Temperature:${weather.main.temp}</p>`;
         strang += `      <p>Conditions:${weather.weather[0].description}</p>`;
         strang += `      <p>Air pressure:${weather.main.pressure}</p>`;
