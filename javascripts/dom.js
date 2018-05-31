@@ -7,6 +7,7 @@ const printWidgets = (weatherData,days) => {
   if (days === 1) {
     // remove all widgets each time re-submit the zipcode
     // then re-print new widgets
+    // so users do not get same widget more than 1 time
     $('.weahter-widgets-row').remove();
     strang += `<div class="row margin-top weather-widgets-current-day-row weahter-widgets-row">`;
     strang += `<div class="col-sm-6 col-md-4 col-md-offset-4 weathercard-current-day weather-widgets">`;
@@ -35,7 +36,7 @@ const printWidgets = (weatherData,days) => {
         strang += `  <div class="thumbnail">`;
         strang += `    <img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" alt="...">`;
         strang += `    <div class="caption">`;
-        strang += `      <h3>${moment(weather.dt_txt).format('MMMM DD, YYYY')}</h3>`;
+        strang += `      <h3>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</h3>`;
         strang += `      <p>Temperature:${weather.main.temp}</p>`;
         strang += `      <p>Conditions:${weather.weather[0].description}</p>`;
         strang += `      <p>Air pressure:${weather.main.pressure}</p>`;
