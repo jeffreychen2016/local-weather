@@ -40,7 +40,8 @@ const getResults = (days) => {
         dom.printWidgets(data,days);
       })
       .catch((err) => {
-        console.log(err);
+        // display error when bad request
+        zipcodeValidation.displayError();
       });
   } else {
     dom.removeWidgets();
