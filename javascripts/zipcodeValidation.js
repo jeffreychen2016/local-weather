@@ -12,6 +12,7 @@ const displayInvalidZipError = () => {
     let errorString = '';
     errorString += '<div class="alert alert-danger margin-top" role="alert">Please enter a valid US zip code (use a hyphen if 9 digits).</div>';
     $('.alert').remove();
+    $('.weahter-widgets-row').remove();
     $(errorString).appendTo('#zipcode-input-section').hide().fadeIn(600);
   };
 };
