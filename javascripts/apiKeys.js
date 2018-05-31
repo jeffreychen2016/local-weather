@@ -8,7 +8,7 @@ const getAPIKeys = () => {
   return new Promise((resolve,reject) => {
     $.ajax('../db/apiKeys.json')
       .done((data) => {
-        resolve(data.apiKeys.db.apiKey);
+        resolve(data.apiKeys);
       })
       .fail((err) => {
         reject(err);
@@ -18,8 +18,9 @@ const getAPIKeys = () => {
 
 const setKeys = () => {
   getAPIKeys()
-    .then((apiKey) => {
-      data.setKey(apiKey);
+    .then((apiKeys) => {
+      data.setKey(apiKeys.weatherDB.apiKey);
+      firebase.initializeApp(apiKeys.firebaseDB);
     })
     .catch((err) => {
       console.error(err);

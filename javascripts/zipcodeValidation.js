@@ -7,13 +7,17 @@ const validateZipcode = () => {
   };
 };
 
+const displayError = () => {
+  let errorString = '';
+  errorString += '<div class="alert alert-danger margin-top" role="alert">Please enter a valid US zip code (use a hyphen if 9 digits).</div>';
+  $('.alert').remove();
+  $('.weahter-widgets-row').remove();
+  $(errorString).appendTo('#zipcode-input-section').hide().fadeIn(600);
+};
+
 const displayInvalidZipError = () => {
   if (!validateZipcode()) {
-    let errorString = '';
-    errorString += '<div class="alert alert-danger margin-top" role="alert">Please enter a valid US zip code (use a hyphen if 9 digits).</div>';
-    $('.alert').remove();
-    $('.weahter-widgets-row').remove();
-    $(errorString).appendTo('#zipcode-input-section').hide().fadeIn(600);
+    displayError();
   };
 };
 
@@ -25,4 +29,5 @@ module.exports = {
   validateZipcode,
   displayInvalidZipError,
   removeInvalidZipError,
+  displayError,
 };
