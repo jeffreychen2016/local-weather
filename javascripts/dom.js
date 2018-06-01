@@ -19,7 +19,7 @@ const printWidgets = (weatherData,days) => {
     strang += `      <p>Conditions:${weatherData.weather[0].description}</p>`;
     strang += `      <p>Air pressure:${weatherData.wind.speed}</p>`;
     strang += `      <p>Wind speed:${weatherData.main.pressure}</p>`;
-    strang += `      <p><a href="#" class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a href="#" class="btn btn-default" role="button" id="btn-next-5-days">Next 5 Days</a></p>`;
+    strang += `      <p><a class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a href="#" class="btn btn-default" role="button" id="btn-next-5-days">Next 5 Days</a></p>`;
     strang += `    </div>`;
     strang += `  </div>`;
     strang += `</div>`;
@@ -34,13 +34,14 @@ const printWidgets = (weatherData,days) => {
       if (hour === '12') {
         strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
         strang += `  <div class="thumbnail">`;
-        strang += `    <img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" alt="...">`;
+        strang += `    <a class="btn btn-primary save-btn" role="button" >Save</a>`;
+        strang += `    <img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" data-icon="${weather.weather[0].icon}" alt="...">`;
         strang += `    <div class="caption">`;
-        strang += `      <h3>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</h3>`;
-        strang += `      <p>Temperature:${weather.main.temp}</p>`;
-        strang += `      <p>Conditions:${weather.weather[0].description}</p>`;
-        strang += `      <p>Air pressure:${weather.main.pressure}</p>`;
-        strang += `      <p>Wind speed:${weather.wind.speed}</p>`;
+        strang += `      <h3 class='date'>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</h3>`;
+        strang += `      <p class='temperature'>Temperature:${weather.main.temp}</p>`;
+        strang += `      <p class='conditions'>Conditions:${weather.weather[0].description}</p>`;
+        strang += `      <p class='air-pressure'>Air pressure:${weather.main.pressure}</p>`;
+        strang += `      <p class='wind-speed'>Wind speed:${weather.wind.speed}</p>`;
         strang += `    </div>`;
         strang += `  </div>`;
         strang += `</div>`;

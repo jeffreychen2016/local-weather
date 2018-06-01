@@ -4,6 +4,7 @@ const apiKeys = require('./apiKeys');
 const initializer = () => {
   apiKeys.setKeys();
   events.searchWeather();
+  events.saveWeatherToDBEvent();
 };
 
 initializer();

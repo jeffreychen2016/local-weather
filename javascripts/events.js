@@ -1,4 +1,6 @@
+/* eslint camelcase: 0 */
 const data = require('./data');
+const firebaseAPI = require('./firebaseAPI');
 
 const searchWeather = () => {
   $(document).click((e) => {
@@ -12,6 +14,33 @@ const searchWeather = () => {
   });
 };
 
+// get data from the card that being clicked
+// then build the object that will be passed into
+// if successfully add the movie to database, then remove that movie
+const saveWeatherToDBEvent = () => {
+  $(document).on('click', '.save-btn', (e) => {
+    const weatherWidget = $(e.target).closest('.weather-widgets');
+    const weatherToAdd = {
+      date: weatherWidget.find('.date').text(),
+      temperature: weatherWidget.find('.temperature').text(),
+      conditions: weatherWidget.find('.conditions').text(),
+      air_pressure: weatherWidget.find('.air-pressure').text(),
+      wind_speed: weatherWidget.find('.wind-speed').text(),
+      icon: weatherWidget.find('img').data('icon'),
+    };
+
+    firebaseAPI.saveWeatherToDB(weatherToAdd)
+      .then(() => {
+        // display message after add widget to database
+        console.log('saved to database');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+};
+
 module.exports = {
   searchWeather,
+  saveWeatherToDBEvent,
 };
