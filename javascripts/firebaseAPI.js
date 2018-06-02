@@ -25,7 +25,31 @@ const saveWeatherToDB = (weatherToAdd) => {
   });
 };
 
+// GET
+const getAllWeatherFromDB = () => {
+  return new Promise((resolve,reject) => {
+    const allWeatherArray = [];
+    $.ajax({
+      method: 'GET',
+      url: `${firebaseConfig.databaseURL}/weather.json`,
+    })
+      .done((allWeather) => {
+        if (allWeather !== null) {
+          Object.keys(allWeather).forEach((fbKey) => {
+            allWeather[fbKey].id = fbKey;
+            allWeatherArray.push(allWeather[fbKey]);
+          });
+        };
+        resolve(allWeatherArray);
+      })
+      .fail((err) => {
+        console.error(err);
+      });
+  });
+};
+
 module.exports = {
   setConfig,
   saveWeatherToDB,
+  getAllWeatherFromDB,
 };

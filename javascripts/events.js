@@ -3,6 +3,24 @@ const data = require('./data');
 const firebaseAPI = require('./firebaseAPI');
 const dom = require('./dom');
 
+const navPageEvent = () => {
+  $(document).on('click', (e) => {
+    if (e.target.id === 'authBtn') {
+      $('#authentication').removeClass('hide');
+      $('#savedWeather').addClass('hide');
+      $('#search').addClass('hide');
+    } else if (e.target.id === 'savedWeatherBtn') {
+      $('#authentication').addClass('hide');
+      $('#savedWeather').removeClass('hide');
+      $('#search').addClass('hide');
+    } else if (e.target.id === 'searchBtn') {
+      $('#authentication').addClass('hide');
+      $('#savedWeather').addClass('hide');
+      $('#search').removeClass('hide');
+    };
+  });
+};
+
 const searchWeather = () => {
   $(document).click((e) => {
     if (e.target.id === 'btn-submit') {
@@ -15,6 +33,7 @@ const searchWeather = () => {
   });
 };
 
+// POST
 // get data from the card that being clicked
 // then build the object that will be passed into
 // if successfully add the movie to database, then remove that movie
@@ -41,7 +60,22 @@ const saveWeatherToDBEvent = () => {
   });
 };
 
+// GET
+const getAllWeatherFromDBEvent = () => {
+  $(document).on('click','#savedWeatherBtn', () => {
+    firebaseAPI.getAllWeatherFromDB()
+      .then((weatherData) => {
+        dom.printSavedWidgets(weatherData);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+};
+
 module.exports = {
   searchWeather,
   saveWeatherToDBEvent,
+  navPageEvent,
+  getAllWeatherFromDBEvent,
 };
