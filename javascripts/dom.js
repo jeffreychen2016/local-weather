@@ -21,18 +21,19 @@ const printWidgets = (weatherData,days) => {
     strang += `<div class="row margin-top weather-widgets-current-day-row weahter-widgets-row">`;
     strang += `<div class="col-sm-6 col-md-4 col-md-offset-4 weathercard-current-day weather-widgets">`;
     strang += `  <div class="thumbnail">`;
-    strang += `    <img src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="...">`;
+    strang += `    <a class="btn btn-primary save-btn" role="button" >Save</a>`;
+    strang += `    <img src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" data-icon="${weatherData.weather[0].icon}" alt="...">`;
     strang += `    <div class="caption">`;
     strang += `      <h3>${moment().format('MMMM DD, YYYY')}</h3>`;
-    strang += `      <p>Temperature:${weatherData.main.temp}</p>`;
-    strang += `      <p>Conditions:${weatherData.weather[0].description}</p>`;
-    strang += `      <p>Air pressure:${weatherData.wind.speed}</p>`;
-    strang += `      <p>Wind speed:${weatherData.main.pressure}</p>`;
+    strang += `      <p class='date'>Temperature:${weatherData.main.temp}</p>`;
+    strang += `      <p class='temperature'>Conditions:${weatherData.weather[0].description}</p>`;
+    strang += `      <p class='conditions'>Air pressure:${weatherData.wind.speed}</p>`;
+    strang += `      <p class='wind-speed'>Wind speed:${weatherData.main.pressure}</p>`;
     strang += `      <p><a class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a href="#" class="btn btn-default" role="button" id="btn-next-5-days">Next 5 Days</a></p>`;
     strang += `    </div>`;
     strang += `  </div>`;
     strang += `</div>`;
-  } else if (days === 5 || days === 3) {
+  } else if (days !== 1) {
     // remove all widgets that are not current day widget
     // then re-print widgets for either 3 days or 5 days to avoid appending empty row
     $('.weather-widgets-not-current-day-row').remove();
@@ -64,6 +65,29 @@ const printWidgets = (weatherData,days) => {
   $(`.weathercard-other-than-current-day:gt(${days - 1})`).remove();
 };
 
+const printSavedWidgets = (savedData) => {
+  let strang = '';
+  strang += `<div class="row margin-top weather-widgets-not-current-day-row weahter-widgets-row">`;
+  savedData.forEach((weather) => {
+    strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
+    strang += `  <div class="thumbnail">`;
+    strang += `    <a class="btn btn-primary save-btn" role="button" >Delete</a>`;
+    strang += `    <img src="http://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
+    strang += `    <div class="caption">`;
+    strang += `      <h3 class='date'>${weather.date}</h3>`;
+    strang += `      <p class='temperature'>Temperature:${weather.temperature}</p>`;
+    strang += `      <p class='conditions'>Conditions:${weather.conditions}</p>`;
+    strang += `      <p class='air-pressure'>Air pressure:${weather.air_pressure}</p>`;
+    strang += `      <p class='wind-speed'>Wind speed:${weather.wind_speed}</p>`;
+    strang += `    </div>`;
+    strang += `  </div>`;
+    strang += `</div>`;
+  });
+  strang += `</div>`;
+
+  $(strang).appendTo('#savedWeather').hide().fadeIn(600);
+};
+
 const removeWidgets = () => {
   $('.weather-widgets-row').remove();
 };
@@ -72,4 +96,5 @@ module.exports = {
   printWidgets,
   removeWidgets,
   sucessMessage,
+  printSavedWidgets,
 };
