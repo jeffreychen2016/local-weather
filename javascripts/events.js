@@ -1,6 +1,7 @@
 /* eslint camelcase: 0 */
 const data = require('./data');
 const firebaseAPI = require('./firebaseAPI');
+const dom = require('./dom');
 
 const searchWeather = () => {
   $(document).click((e) => {
@@ -32,7 +33,7 @@ const saveWeatherToDBEvent = () => {
     firebaseAPI.saveWeatherToDB(weatherToAdd)
       .then(() => {
         // display message after add widget to database
-        console.log('saved to database');
+        dom.sucessMessage();
       })
       .catch((err) => {
         console.error(err);

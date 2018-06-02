@@ -1,6 +1,15 @@
 /* eslint no-undef: 0 */
 const moment = require('../lib/node_modules/moment');
 
+const sucessMessage = () => {
+  let string = '';
+  string += '<div class="alert alert-success margin-top" role="alert" id="success-msg">The weather widget was saved correctly.</div>';
+  $(string).appendTo('#zipcode-input-section').hide().fadeIn(600);
+  window.setTimeout(() => {
+    $('#success-msg').fadeOut(1000).remove();
+  }, 2000);
+};
+
 const printWidgets = (weatherData,days) => {
   let strang = '';
 
@@ -62,4 +71,5 @@ const removeWidgets = () => {
 module.exports = {
   printWidgets,
   removeWidgets,
+  sucessMessage,
 };
