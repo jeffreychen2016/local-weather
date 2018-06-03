@@ -8,6 +8,7 @@ const initializer = () => {
   events.saveWeatherToDBEvent();
   events.getAllWeatherFromDBEvent();
   events.deleteWeatherInDBEvent();
+  events.updateWeatherInDBEvent();
 };
 
 initializer();

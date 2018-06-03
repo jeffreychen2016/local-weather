@@ -9,3 +9,7 @@ body {
 .hide {
   display: none;
 }
+
+.scary {
+  background-color: red;
+}
