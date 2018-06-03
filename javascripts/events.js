@@ -61,11 +61,29 @@ const saveWeatherToDBEvent = () => {
 };
 
 // GET
+const getAllSavedWeather = () => {
+  firebaseAPI.getAllWeatherFromDB()
+    .then((weatherData) => {
+      dom.printSavedWidgets(weatherData);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const getAllWeatherFromDBEvent = () => {
   $(document).on('click','#savedWeatherBtn', () => {
-    firebaseAPI.getAllWeatherFromDB()
-      .then((weatherData) => {
-        dom.printSavedWidgets(weatherData);
+    getAllSavedWeather();
+  });
+};
+
+// DELETE
+const deleteWeatherInDBEvent = () => {
+  $(document).on('click','.delete-btn', (e) => {
+    const weatherToDeleteId = $(e.target).closest('.thumbnail').data('firebaseId');
+    firebaseAPI.deleteWeatherInDB(weatherToDeleteId)
+      .then(() => {
+        getAllSavedWeather();
       })
       .catch((err) => {
         console.error(err);
@@ -78,4 +96,5 @@ module.exports = {
   saveWeatherToDBEvent,
   navPageEvent,
   getAllWeatherFromDBEvent,
+  deleteWeatherInDBEvent,
 };
