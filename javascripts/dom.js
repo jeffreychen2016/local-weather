@@ -24,11 +24,11 @@ const printWidgets = (weatherData,days) => {
     strang += `    <a class="btn btn-primary save-btn" role="button" >Save</a>`;
     strang += `    <img src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" data-icon="${weatherData.weather[0].icon}" alt="...">`;
     strang += `    <div class="caption">`;
-    strang += `      <h3>${moment().format('MMMM DD, YYYY')}</h3>`;
-    strang += `      <p class='date'>Temperature:${weatherData.main.temp}</p>`;
-    strang += `      <p class='temperature'>Conditions:${weatherData.weather[0].description}</p>`;
-    strang += `      <p class='conditions'>Air pressure:${weatherData.wind.speed}</p>`;
-    strang += `      <p class='wind-speed'>Wind speed:${weatherData.main.pressure}</p>`;
+    strang += `      <h3 class='date' data-date='${moment().format('MMMM DD, YYYY')}'>${moment().format('MMMM DD, YYYY')}</h3>`;
+    strang += `      <p class='temperature' data-temp='${weatherData.main.temp}'>Temperature:${weatherData.main.temp}</p>`;
+    strang += `      <p class='conditions' data-cond='${weatherData.weather[0].description}'>Conditions:${weatherData.weather[0].description}</p>`;
+    strang += `      <p class='air-pressure' data-pressure='${weatherData.main.pressure}'>Air pressure:${weatherData.main.pressure}</p>`;
+    strang += `      <p class='wind-speed' data-speed='${weatherData.wind.speed}'>Wind speed:${weatherData.wind.speed}</p>`;
     strang += `      <p><a class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a href="#" class="btn btn-default" role="button" id="btn-next-5-days">Next 5 Days</a></p>`;
     strang += `    </div>`;
     strang += `  </div>`;
@@ -47,11 +47,11 @@ const printWidgets = (weatherData,days) => {
         strang += `    <a class="btn btn-primary save-btn" role="button" >Save</a>`;
         strang += `    <img src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" data-icon="${weather.weather[0].icon}" alt="...">`;
         strang += `    <div class="caption">`;
-        strang += `      <h3 class='date'>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</h3>`;
-        strang += `      <p class='temperature'>Temperature:${weather.main.temp}</p>`;
-        strang += `      <p class='conditions'>Conditions:${weather.weather[0].description}</p>`;
-        strang += `      <p class='air-pressure'>Air pressure:${weather.main.pressure}</p>`;
-        strang += `      <p class='wind-speed'>Wind speed:${weather.wind.speed}</p>`;
+        strang += `      <h3 class='date' data-date='${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}'>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</h3>`;
+        strang += `      <p class='temperature' data-temp='${weather.main.temp}'>Temperature:${weather.main.temp}</p>`;
+        strang += `      <p class='conditions' date-cond='${weather.weather[0].description}'>Conditions:${weather.weather[0].description}</p>`;
+        strang += `      <p class='air-pressure' data-pressure='${weather.main.pressure}'>Air pressure:${weather.main.pressure}</p>`;
+        strang += `      <p class='wind-speed' data-speed='${weather.wind.speed}'>Wind speed:${weather.wind.speed}</p>`;
         strang += `    </div>`;
         strang += `  </div>`;
         strang += `</div>`;
@@ -71,15 +71,21 @@ const printSavedWidgets = (savedData) => {
   strang += `<div class="row margin-top weather-widgets-not-current-day-row weahter-widgets-row">`;
   savedData.forEach((weather) => {
     strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
-    strang += `  <div class="thumbnail" data-firebase-id="${weather.id}">`;
+    if (weather.isScary) {
+      strang += `  <div class="thumbnail scary" data-firebase-id="${weather.id}">`;
+    } else {
+      strang += `  <div class="thumbnail not-scary" data-firebase-id="${weather.id}">`;
+    };
     strang += `    <a class="btn btn-primary delete-btn" role="button">Delete</a>`;
+    strang += `    <a class="btn btn-primary scary-btn" role="button" data-update-scary='${weather.isScary}'>${weather.isScary ? 'Not Scary' : 'Scary'}</a>`;
     strang += `    <img src="http://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
     strang += `    <div class="caption">`;
-    strang += `      <h3 class='date'>${weather.date}</h3>`;
-    strang += `      <p class='temperature'>Temperature:${weather.temperature}</p>`;
-    strang += `      <p class='conditions'>Conditions:${weather.conditions}</p>`;
-    strang += `      <p class='air-pressure'>Air pressure:${weather.air_pressure}</p>`;
-    strang += `      <p class='wind-speed'>Wind speed:${weather.wind_speed}</p>`;
+    strang += `      <h3 class='date' data-date='${weather.date}'>${weather.date}</h3>`;
+    strang += `      <p class='temperature' data-temp='${weather.temperature}'>Temperature:${weather.temperature}</p>`;
+    strang += `      <p class='conditions' data-cond='${weather.conditions}'>Conditions:${weather.conditions}</p>`;
+    strang += `      <p class='air-pressure' data-pressure='${weather.air_pressure}'>Air pressure:${weather.air_pressure}</p>`;
+    strang += `      <p class='wind-speed' data-speed='${weather.wind_speed}'>Wind speed:${weather.wind_speed}</p>`;
+    strang += `      <p>${weather.isScary ? 'Scary' : 'Not Scary'}</p>`;
     strang += `    </div>`;
     strang += `  </div>`;
     strang += `</div>`;

@@ -41,12 +41,13 @@ const saveWeatherToDBEvent = () => {
   $(document).on('click', '.save-btn', (e) => {
     const weatherWidget = $(e.target).closest('.weather-widgets');
     const weatherToAdd = {
-      date: weatherWidget.find('.date').text(),
-      temperature: weatherWidget.find('.temperature').text(),
-      conditions: weatherWidget.find('.conditions').text(),
-      air_pressure: weatherWidget.find('.air-pressure').text(),
-      wind_speed: weatherWidget.find('.wind-speed').text(),
+      date: weatherWidget.find('.date').data('date'),
+      temperature: weatherWidget.find('.temperature').data('temp'),
+      conditions: weatherWidget.find('.conditions').data('cond'),
+      air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
+      wind_speed: weatherWidget.find('.wind-speed').data('speed'),
       icon: weatherWidget.find('img').data('icon'),
+      isScary: false,
     };
 
     firebaseAPI.saveWeatherToDB(weatherToAdd)
@@ -91,10 +92,41 @@ const deleteWeatherInDBEvent = () => {
   });
 };
 
+// UPDATE
+const updateWeatherInDBEvent = () => {
+  $(document).on('click','.scary-btn', (e) => {
+    const weatherToDeleteId = $(e.target).closest('.thumbnail').data('firebaseId');
+    const weatherWidget = $(e.target).closest('.weather-widgets');
+    let isScaryUpdate = false;
+    if (weatherWidget.find('.scary-btn').data('updateScary')) {
+      isScaryUpdate = false;
+    } else {
+      isScaryUpdate = true;
+    };
+    const weatherToUpdate = {
+      date: weatherWidget.find('.date').data('date'),
+      temperature: weatherWidget.find('.temperature').data('temp'),
+      conditions: weatherWidget.find('.conditions').data('cond'),
+      air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
+      wind_speed: weatherWidget.find('.wind-speed').data('speed'),
+      icon: weatherWidget.find('img').data('icon'),
+      isScary: isScaryUpdate,
+    };
+    firebaseAPI.updateWeatherInDB(weatherToUpdate,weatherToDeleteId)
+      .then(() => {
+        getAllSavedWeather();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+};
+
 module.exports = {
   searchWeather,
   saveWeatherToDBEvent,
   navPageEvent,
   getAllWeatherFromDBEvent,
   deleteWeatherInDBEvent,
+  updateWeatherInDBEvent,
 };
