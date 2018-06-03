@@ -66,12 +66,13 @@ const printWidgets = (weatherData,days) => {
 };
 
 const printSavedWidgets = (savedData) => {
+  $('#savedWeather').html('');
   let strang = '';
   strang += `<div class="row margin-top weather-widgets-not-current-day-row weahter-widgets-row">`;
   savedData.forEach((weather) => {
     strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
-    strang += `  <div class="thumbnail">`;
-    strang += `    <a class="btn btn-primary save-btn" role="button" >Delete</a>`;
+    strang += `  <div class="thumbnail" data-firebase-id="${weather.id}">`;
+    strang += `    <a class="btn btn-primary delete-btn" role="button">Delete</a>`;
     strang += `    <img src="http://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
     strang += `    <div class="caption">`;
     strang += `      <h3 class='date'>${weather.date}</h3>`;

@@ -7,6 +7,7 @@ const initializer = () => {
   events.searchWeather();
   events.saveWeatherToDBEvent();
   events.getAllWeatherFromDBEvent();
+  events.deleteWeatherInDBEvent();
 };
 
 initializer();

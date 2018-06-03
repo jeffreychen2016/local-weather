@@ -48,8 +48,25 @@ const getAllWeatherFromDB = () => {
   });
 };
 
+// DELETE
+const deleteWeatherInDB = (weatherId) => {
+  return new Promise((resolve,reject) => {
+    $.ajax({
+      method: 'DELETE',
+      url: `${firebaseConfig.databaseURL}/weather/${weatherId}.json`,
+    })
+      .done(() => {
+        resolve();
+      })
+      .fail((err) => {
+        reject(err);
+      });
+  });
+};
+
 module.exports = {
   setConfig,
   saveWeatherToDB,
   getAllWeatherFromDB,
+  deleteWeatherInDB,
 };
