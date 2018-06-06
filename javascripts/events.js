@@ -134,6 +134,23 @@ const authEvents = () => {
     $('#login-form').removeClass('hide');
     $('#registration-form').addClass('hide');
   });
+
+  // register account
+  $('#register-btn').click(() => {
+    const email = $('#registerEmail').val();
+    const pass = $('#registerPassword').val();
+    firebase.auth().createUserWithEmailAndPassword(email, pass)
+      .then(() => {
+        console.log('registered');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        // var errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+        // ...
+      });
+  });
 };
 
 module.exports = {
