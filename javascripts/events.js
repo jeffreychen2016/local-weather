@@ -122,6 +122,20 @@ const updateWeatherInDBEvent = () => {
   });
 };
 
+const authEvents = () => {
+  // switch to registration page
+  $('#register-link').click((e) => {
+    $('#login-form').addClass('hide');
+    $('#registration-form').removeClass('hide');
+  });
+
+  // switch to log in page
+  $('#signin-link').click((e) => {
+    $('#login-form').removeClass('hide');
+    $('#registration-form').addClass('hide');
+  });
+};
+
 module.exports = {
   searchWeather,
   saveWeatherToDBEvent,
@@ -129,4 +143,5 @@ module.exports = {
   getAllWeatherFromDBEvent,
   deleteWeatherInDBEvent,
   updateWeatherInDBEvent,
+  authEvents,
 };
