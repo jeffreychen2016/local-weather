@@ -151,6 +151,31 @@ const authEvents = () => {
         // ...
       });
   });
+
+  // login
+  $('#signin-btn').click((e) => {
+    e.preventDefault();
+
+    const email = $('#inputEmail').val();
+    const pass = $('#inputPassword').val();
+    // calling auth services of firebase
+    // pass in email and password
+    // firebase will return a promise
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+      // not using returned user object
+      // do not need .then here since it is managed by the auth state changing
+      // in checkLoginStatus *******
+      .then((user) => {
+        console.log('signed in');
+      })
+      .catch((error) => {
+        // Handle Errors here. When get error on sign-in
+        // var errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+        // ...
+      });
+  });
 };
 
 module.exports = {
@@ -158,6 +183,7 @@ module.exports = {
   saveWeatherToDBEvent,
   navPageEvent,
   getAllWeatherFromDBEvent,
+  getAllSavedWeather,
   deleteWeatherInDBEvent,
   updateWeatherInDBEvent,
   authEvents,
