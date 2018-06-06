@@ -166,6 +166,8 @@ const authEvents = () => {
       // do not need .then here since it is managed by the auth state changing
       // in checkLoginStatus *******
       .then((user) => {
+        // Sign-in successful.
+        // move this code to auth module -------
         console.log('signed in');
       })
       .catch((error) => {
@@ -174,6 +176,18 @@ const authEvents = () => {
         const errorMessage = error.message;
         console.error(errorMessage);
         // ...
+      });
+  });
+
+  $('#logoutBtn').click((e) => {
+    firebase.auth().signOut()
+      .then(() => {
+        // Sign-out successful.
+        // move this code to auth module -------
+        console.log('signed out');
+      })
+      .catch((error) => {
+        console.error(error);
       });
   });
 };

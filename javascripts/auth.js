@@ -12,7 +12,8 @@ const checkLoginStatus = () => {
     } else {
       // No user is signed in.
       // move it from log out event ------
-
+      $('#authentication').removeClass('hide');
+      $('#savedWeather').addClass('hide');
     };
   });
 };
