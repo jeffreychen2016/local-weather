@@ -1,5 +1,6 @@
 const data = require('./data');
 const firebaseAPI = require('./firebaseAPI');
+const auth = require('./auth');
 
 // get API keys from JSON file
 // set key to a variable when page load
@@ -23,6 +24,7 @@ const setKeys = () => {
       data.setKey(apiKeys.weatherDB.apiKey);
       firebaseAPI.setConfig(apiKeys.firebaseDB);
       firebase.initializeApp(apiKeys.firebaseDB);
+      auth.checkLoginStatus();
     })
     .catch((err) => {
       console.error(err);
