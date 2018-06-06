@@ -9,6 +9,7 @@ const initializer = () => {
   events.getAllWeatherFromDBEvent();
   events.deleteWeatherInDBEvent();
   events.updateWeatherInDBEvent();
+  events.authEvents();
 };
 
 initializer();
