@@ -3,7 +3,6 @@ let uid = '';
 
 const setUid = (userId) => {
   uid = userId;
-  console.log(uid);
 };
 
 // get databaseURL from API JSON file for posting data

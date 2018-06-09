@@ -12,7 +12,7 @@ const checkLoginStatus = () => {
       $('#savedWeatherBtn,#searchBtn,#logoutBtn').removeClass('hide');
       $('#authBtn').addClass('hide');
 
-      $('#savedWeather').removeClass('hide');
+      $('#savedWeather').addClass('hide');
       $('#authentication').addClass('hide');
       $('#search').removeClass('hide');
       events.getAllSavedWeather();

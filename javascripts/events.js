@@ -41,11 +41,14 @@ const saveWeatherToDBEvent = () => {
   $(document).on('click', '.save-btn', (e) => {
     const weatherWidget = $(e.target).closest('.weather-widgets');
     const weatherToAdd = {
+      city: weatherWidget.find('.city').data('city'),
       date: weatherWidget.find('.date').data('date'),
       temperature: weatherWidget.find('.temperature').data('temp'),
       conditions: weatherWidget.find('.conditions').data('cond'),
       air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
       wind_speed: weatherWidget.find('.wind-speed').data('speed'),
+      feels_like: weatherWidget.find('.feels-like').data('feelsLike'),
+      humidity: weatherWidget.find('.humidity').data('humidity'),
       icon: weatherWidget.find('img').data('icon'),
       isScary: false,
     };
@@ -74,6 +77,7 @@ const getAllSavedWeather = () => {
 
 const getAllWeatherFromDBEvent = () => {
   $(document).on('click','#savedWeatherBtn', () => {
+    $('#search').addClass('hide');
     getAllSavedWeather();
   });
 };
@@ -104,11 +108,14 @@ const updateWeatherInDBEvent = () => {
       isScaryUpdate = true;
     };
     const weatherToUpdate = {
+      city: weatherWidget.find('.city').data('city'),
       date: weatherWidget.find('.date').data('date'),
       temperature: weatherWidget.find('.temperature').data('temp'),
       conditions: weatherWidget.find('.conditions').data('cond'),
       air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
       wind_speed: weatherWidget.find('.wind-speed').data('speed'),
+      feels_like: weatherWidget.find('.feels-like').data('feelsLike'),
+      humidity: weatherWidget.find('.humidity').data('humidity'),
       icon: weatherWidget.find('img').data('icon'),
       isScary: isScaryUpdate,
     };
@@ -141,7 +148,6 @@ const authEvents = () => {
     const pass = $('#registerPassword').val();
     firebase.auth().createUserWithEmailAndPassword(email, pass)
       .then(() => {
-        console.log('registered');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -168,7 +174,6 @@ const authEvents = () => {
       .then((user) => {
         // Sign-in successful.
         // move this code to auth module -------
-        console.log('signed in');
       })
       .catch((error) => {
         // Handle Errors here. When get error on sign-in
@@ -184,7 +189,6 @@ const authEvents = () => {
       .then(() => {
         // Sign-out successful.
         // move this code to auth module -------
-        console.log('signed out');
       })
       .catch((error) => {
         console.error(error);
