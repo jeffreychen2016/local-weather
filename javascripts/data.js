@@ -40,9 +40,8 @@ const getResults = (days) => {
         dom.printWidgets(data,days);
       })
       .catch((err) => {
-        // display error when bad request
-        // zipcodeValidation.displayError();
-        console.log(err);
+        // display error when bad request -- 5 digits invalid zip cod like 00000
+        zipcodeValidation.displayError();
       });
   } else {
     dom.removeWidgets();
