@@ -10,10 +10,6 @@ body {
   display: none;
 }
 
-.scary {
-  background-color: red;
-}
-
 /* --------------- Weather Widget --------------- */
 
 .thumbnail {
@@ -109,4 +105,8 @@ table tr td {
   width: auto;
   letter-spacing: -5px;
   padding-top: 16px;
+}
+
+.thumbnail.scary {
+  background-image: linear-gradient(to top left,red,red);
 }

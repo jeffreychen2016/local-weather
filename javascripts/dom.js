@@ -16,7 +16,6 @@ const sucessMessage = () => {
 
 const printWidgets = (weatherData,days) => {
   let strang = '';
-  console.log(city);
 
   if (days === 1) {
     // remove all widgets each time re-submit the zipcode
@@ -37,7 +36,7 @@ const printWidgets = (weatherData,days) => {
     strang += `     </div>`;
     strang += `     <div class="widget-body">`;
     strang += `       <div class="widget-left-col align-middle">`;
-    strang += `         <div class='temperature' data-temp='${temp}°F'>${temp}°F</div>`;
+    strang += `         <div class='temperature' data-temp='${temp}'>${temp}°F</div>`;
     strang += `       </div>`;
     strang += `       <table class="widget-right-col">`;
     strang += `         <tr class='details-row'>`;
@@ -86,7 +85,7 @@ const printWidgets = (weatherData,days) => {
         strang += `     </div>`;
         strang += `     <div class="widget-body">`;
         strang += `       <div class="widget-left-col align-middle">`;
-        strang += `         <div class='temperature' data-temp='${temp}°F'>${temp}°F</div>`;
+        strang += `         <div class='temperature' data-temp='${temp}'>${temp}°F</div>`;
         strang += `       </div>`;
         strang += `       <table class="widget-right-col">`;
         strang += `         <tr class='details-row'>`;
@@ -111,7 +110,7 @@ const printWidgets = (weatherData,days) => {
         strang += `         </tr>`;
         strang += `       </table>`;
         strang += `     </div>`;
-        strang += `     <div class='db-button-group'><p class='text-center'><a class="btn btn-primary" role="button" id="btn-next-3-days">Next 3 Days</a> <a class="btn btn-primary" role="button" id="btn-next-5-days">Next 5 Days</a><a class="btn btn-primary save-btn" role="button" >Save</a></p></div>`;
+        strang += `     <div class='db-button-group'><a class="btn btn-primary save-btn" role="button" >Save</a></p></div>`;
         strang += `     <div class='date' data-date='${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}'>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</div>`;;
         strang += `    </div>`;
         strang += `  </div>`;
@@ -127,7 +126,7 @@ const printWidgets = (weatherData,days) => {
 };
 
 const printSavedWidgets = (savedData) => {
-  $('#savedWeather').html('');
+  $('#savedWeather-container').html('');
   let strang = '';
   strang += `<div class="row margin-top weather-widgets-not-current-day-row weahter-widgets-row">`;
   savedData.forEach((weather) => {
@@ -196,7 +195,7 @@ const printSavedWidgets = (savedData) => {
   });
   strang += `</div>`;
 
-  $(strang).appendTo('#savedWeather').hide().fadeIn(600);
+  $(strang).appendTo('#savedWeather-container').hide().fadeIn(600);
 };
 
 const removeWidgets = () => {

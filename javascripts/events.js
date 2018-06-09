@@ -47,8 +47,8 @@ const saveWeatherToDBEvent = () => {
       conditions: weatherWidget.find('.conditions').data('cond'),
       air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
       wind_speed: weatherWidget.find('.wind-speed').data('speed'),
-      feels_like: weatherWidget.find('feels-like').data('feelsLike'),
-      humidity: weatherWidget.find('humidity').data('humidity'),
+      feels_like: weatherWidget.find('.feels-like').data('feelsLike'),
+      humidity: weatherWidget.find('.humidity').data('humidity'),
       icon: weatherWidget.find('img').data('icon'),
       isScary: false,
     };
@@ -77,6 +77,7 @@ const getAllSavedWeather = () => {
 
 const getAllWeatherFromDBEvent = () => {
   $(document).on('click','#savedWeatherBtn', () => {
+    $('#search').addClass('hide');
     getAllSavedWeather();
   });
 };
@@ -107,11 +108,14 @@ const updateWeatherInDBEvent = () => {
       isScaryUpdate = true;
     };
     const weatherToUpdate = {
+      city: weatherWidget.find('.city').data('city'),
       date: weatherWidget.find('.date').data('date'),
       temperature: weatherWidget.find('.temperature').data('temp'),
       conditions: weatherWidget.find('.conditions').data('cond'),
       air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
       wind_speed: weatherWidget.find('.wind-speed').data('speed'),
+      feels_like: weatherWidget.find('.feels-like').data('feelsLike'),
+      humidity: weatherWidget.find('.humidity').data('humidity'),
       icon: weatherWidget.find('img').data('icon'),
       isScary: isScaryUpdate,
     };
