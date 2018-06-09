@@ -110,3 +110,10 @@ table tr td {
 .thumbnail.scary {
   background-image: linear-gradient(to top left,red,red);
 }
+
+.success-msg {
+  position: absolute;
+  top: -20px;
+  width: 100%;
+  left: 0;
+}
