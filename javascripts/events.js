@@ -47,6 +47,8 @@ const saveWeatherToDBEvent = () => {
       conditions: weatherWidget.find('.conditions').data('cond'),
       air_pressure: weatherWidget.find('.air-pressure').data('pressure'),
       wind_speed: weatherWidget.find('.wind-speed').data('speed'),
+      feels_like: weatherWidget.find('feels-like').data('feelsLike'),
+      humidity: weatherWidget.find('humidity').data('humidity'),
       icon: weatherWidget.find('img').data('icon'),
       isScary: false,
     };

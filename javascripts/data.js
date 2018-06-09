@@ -41,7 +41,8 @@ const getResults = (days) => {
       })
       .catch((err) => {
         // display error when bad request
-        zipcodeValidation.displayError();
+        // zipcodeValidation.displayError();
+        console.log(err);
       });
   } else {
     dom.removeWidgets();
