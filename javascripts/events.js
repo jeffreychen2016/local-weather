@@ -41,6 +41,7 @@ const saveWeatherToDBEvent = () => {
   $(document).on('click', '.save-btn', (e) => {
     const weatherWidget = $(e.target).closest('.weather-widgets');
     const weatherToAdd = {
+      city: weatherWidget.find('.city').data('city'),
       date: weatherWidget.find('.date').data('date'),
       temperature: weatherWidget.find('.temperature').data('temp'),
       conditions: weatherWidget.find('.conditions').data('cond'),
@@ -141,7 +142,6 @@ const authEvents = () => {
     const pass = $('#registerPassword').val();
     firebase.auth().createUserWithEmailAndPassword(email, pass)
       .then(() => {
-        console.log('registered');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -168,7 +168,6 @@ const authEvents = () => {
       .then((user) => {
         // Sign-in successful.
         // move this code to auth module -------
-        console.log('signed in');
       })
       .catch((error) => {
         // Handle Errors here. When get error on sign-in
@@ -184,7 +183,6 @@ const authEvents = () => {
       .then(() => {
         // Sign-out successful.
         // move this code to auth module -------
-        console.log('signed out');
       })
       .catch((error) => {
         console.error(error);
