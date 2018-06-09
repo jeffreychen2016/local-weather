@@ -5,12 +5,13 @@ const moment = require('../lib/node_modules/moment');
 // so get city info from one day API, then store it for using in 5 days DOM function
 let city = '';
 
-const sucessMessage = () => {
+const sucessMessage = (e) => {
+  const savedId = $(e.target).closest('.thumbnail').data('save-id');
   let string = '';
-  string += '<div class="alert alert-success margin-top" role="alert" id="success-msg">The weather widget was saved correctly.</div>';
-  $(string).appendTo('#zipcode-input-section').hide().fadeIn(600);
+  string += '<div class="alert alert-success margin-top success-msg" role="alert">The weather widget was saved successfully.</div>';
+  $(string).appendTo(`[data-save-id=${savedId}]`).hide().fadeIn(600);
   window.setTimeout(() => {
-    $('#success-msg').fadeOut(1000).remove();
+    $('.success-msg').fadeOut(1000).remove();
   }, 2000);
 };
 
@@ -27,7 +28,7 @@ const printWidgets = (weatherData,days) => {
     $('.weahter-widgets-row').remove();
     strang += `<div class="row margin-top weather-widgets-current-day-row weahter-widgets-row">`;
     strang += `<div class="col-sm-6 col-md-4 col-md-offset-4 weathercard-current-day weather-widgets">`;
-    strang += `  <div class="thumbnail">`;
+    strang += `  <div class="thumbnail" data-save-id='${1}'>`;
     strang += `    <img class='weather-icon' src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" data-icon="${weatherData.weather[0].icon}" alt="...">`;
     strang += `    <div class="caption">`;
     strang += `     <div class="widget-header">`;
@@ -71,12 +72,12 @@ const printWidgets = (weatherData,days) => {
     // then re-print widgets for either 3 days or 5 days to avoid appending empty row
     $('.weather-widgets-not-current-day-row').remove();
     strang += `<div class="row margin-top weather-widgets-not-current-day-row weahter-widgets-row">`;
-    weatherData.list.forEach((weather) => {
+    weatherData.list.forEach((weather,i) => {
       const hour = weather.dt_txt.slice(11,13);
       if (hour === '12') {
         const temp = Math.floor(weather.main.temp);
         strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
-        strang += `  <div class="thumbnail">`;
+        strang += `  <div class="thumbnail" data-save-id='${i + 1}'>`;
         strang += `    <img class='weather-icon' src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" data-icon="${weather.weather[0].icon}" alt="...">`;
         strang += `    <div class="caption">`;
         strang += `     <div class="widget-header">`;
@@ -110,7 +111,7 @@ const printWidgets = (weatherData,days) => {
         strang += `         </tr>`;
         strang += `       </table>`;
         strang += `     </div>`;
-        strang += `     <div class='db-button-group'><a class="btn btn-primary save-btn" role="button" >Save</a></p></div>`;
+        strang += `     <div class='db-button-group'><a class="btn btn-primary save-btn" role="button">Save</a></p></div>`;
         strang += `     <div class='date' data-date='${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}'>${moment(weather.dt_txt).format('dddd MMMM DD, YYYY')}</div>`;;
         strang += `    </div>`;
         strang += `  </div>`;

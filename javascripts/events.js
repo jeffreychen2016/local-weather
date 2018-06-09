@@ -56,7 +56,7 @@ const saveWeatherToDBEvent = () => {
     firebaseAPI.saveWeatherToDB(weatherToAdd)
       .then(() => {
         // display message after add widget to database
-        dom.sucessMessage();
+        dom.sucessMessage(e);
       })
       .catch((err) => {
         console.error(err);
