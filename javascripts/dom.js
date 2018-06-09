@@ -179,19 +179,6 @@ const printSavedWidgets = (savedData) => {
     strang += `    </div>`;
     strang += `  </div>`;
     strang += `</div>`;
-
-    // strang += `    <img src="http://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
-    // strang += `    <div class="caption">`;
-    // strang += `      <h3 class='city' data-city='${weather.name}'>${weather.name}</h3>`;
-    // strang += `      <h3 class='date' data-date='${weather.date}'>${weather.date}</h3>`;
-    // strang += `      <p class='temperature' data-temp='${weather.temperature}'>Temperature:${weather.temperature}</p>`;
-    // strang += `      <p class='conditions' data-cond='${weather.conditions}'>Conditions:${weather.conditions}</p>`;
-    // strang += `      <p class='air-pressure' data-pressure='${weather.air_pressure}'>Air pressure:${weather.air_pressure}</p>`;
-    // strang += `      <p class='wind-speed' data-speed='${weather.wind_speed}'>Wind speed:${weather.wind_speed}</p>`;
-    // strang += `      <p>${weather.isScary ? 'Scary' : 'Not Scary'}</p>`;
-    // strang += `    </div>`;
-    // strang += `  </div>`;
-    // strang += `</div>`;
   });
   strang += `</div>`;
 

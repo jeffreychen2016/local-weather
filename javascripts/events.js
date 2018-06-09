@@ -153,7 +153,8 @@ const authEvents = () => {
         // Handle Errors here.
         // var errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorMessage);
+        $('#register-error').removeClass('hide').hide().fadeIn(600);
+        $('#register-error-msg').text(errorMessage);
         // ...
       });
   });
@@ -179,7 +180,8 @@ const authEvents = () => {
         // Handle Errors here. When get error on sign-in
         // var errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorMessage);
+        $('#signin-error').removeClass('hide').hide().fadeIn(600);
+        $('#signin-error-msg').text(errorMessage);
         // ...
       });
   });

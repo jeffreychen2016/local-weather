@@ -12,9 +12,9 @@ const checkLoginStatus = () => {
       $('#savedWeatherBtn,#searchBtn,#logoutBtn').removeClass('hide');
       $('#authBtn').addClass('hide');
 
-      $('#savedWeather').addClass('hide');
+      $('#savedWeather').removeClass('hide');
       $('#authentication').addClass('hide');
-      $('#search').removeClass('hide');
+      $('#search').addClass('hide');
       events.getAllSavedWeather();
     } else {
       // No user is signed in.
