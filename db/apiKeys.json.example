@@ -1,0 +1,15 @@
+{
+	"apiKeys": {
+		"weatherDB": {
+			"apiKey": ""
+		},
+		"firebaseDB":	{
+			"apiKey": "",
+			"authDomain": "",
+			"databaseURL": "",
+			"projectId": "",
+			"storageBucket": "",
+			"messagingSenderId": ""
+		}
+	}
+}
