@@ -10,7 +10,7 @@ const setKey = (key) => {
 const searchDB = (days,zipcode) => {
   if (days === 1) {
     return new Promise((resolve,reject) => {
-      $.ajax(`http://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
+      $.ajax(`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
         .done((data) => {
           resolve(data);
         })
@@ -20,7 +20,7 @@ const searchDB = (days,zipcode) => {
     });
   } else if (days === 5 || days === 3) {
     return new Promise((resolve,reject) => {
-      $.ajax(`http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
+      $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${apiKey}&units=imperial`)
         .done((data) => {
           resolve(data);
         })
