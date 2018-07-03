@@ -29,7 +29,7 @@ const printWidgets = (weatherData,days) => {
     strang += `<div class="row margin-top weather-widgets-current-day-row weahter-widgets-row">`;
     strang += `<div class="col-sm-6 col-md-4 col-md-offset-4 weathercard-current-day weather-widgets">`;
     strang += `  <div class="thumbnail" data-save-id='${1}'>`;
-    strang += `    <img class='weather-icon' src="http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" data-icon="${weatherData.weather[0].icon}" alt="...">`;
+    strang += `    <img class='weather-icon' src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" data-icon="${weatherData.weather[0].icon}" alt="...">`;
     strang += `    <div class="caption">`;
     strang += `     <div class="widget-header">`;
     strang += `       <div class='city' data-city='${city}'>${city}</div>`;
@@ -78,7 +78,7 @@ const printWidgets = (weatherData,days) => {
         const temp = Math.floor(weather.main.temp);
         strang += `<div class="col-sm-6 col-md-4 weathercard-other-than-current-day weather-widgets">`;
         strang += `  <div class="thumbnail" data-save-id='${i + 1}'>`;
-        strang += `    <img class='weather-icon' src="http://openweathermap.org/img/w/${weather.weather[0].icon}.png" data-icon="${weather.weather[0].icon}" alt="...">`;
+        strang += `    <img class='weather-icon' src="https://openweathermap.org/img/w/${weather.weather[0].icon}.png" data-icon="${weather.weather[0].icon}" alt="...">`;
         strang += `    <div class="caption">`;
         strang += `     <div class="widget-header">`;
         strang += `       <div class='city' data-city='${city}'>${city}</div>`;
@@ -137,7 +137,7 @@ const printSavedWidgets = (savedData) => {
     } else {
       strang += `  <div class="thumbnail not-scary" data-firebase-id="${weather.id}">`;
     };
-    strang += `    <img class='weather-icon' src="http://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
+    strang += `    <img class='weather-icon' src="https://openweathermap.org/img/w/${weather.icon}.png" data-icon="${weather.icon}" alt="...">`;
     strang += `    <div class="caption">`;
     strang += `     <div class="widget-header">`;
     strang += `       <div class='city' data-city='${weather.city}'>${weather.city}</div>`;
